@@ -1,6 +1,6 @@
 files:
   <% @log_files['rails'].each do |path| %>
-  - <%= "#{@deploy[:deplot_to]}/#{path}" %>
+  - <%= "#{@deploy[:deploy_to]}/#{path}" %>
   <% end %>
   <% @log_files['common'].each do |path| %>
   - <%= path %>
