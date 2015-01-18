@@ -3,17 +3,18 @@ include_recipe 'deploy'
 node[:deploy].each do |application, deploy|
   Chef::Log.info("[Start] Adding configuration to system log (rsyslog)")
   port = node[:papertrail][:port]
+  host = node[:papertrail][:host]
 
-  Chef::Log.info("Adding config file to /etc/rsyslog.d ...")
-  template "/etc/rsyslog.d/01-papertrail.conf" do
-    source "01-papertrail.conf.erb"
-    mode "0644"
-    owner "root"
-    group "root"
-    variables({
-      :port => port
-    })
-  end
+  # Chef::Log.info("Adding config file to /etc/rsyslog.d ...")
+  # template "/etc/rsyslog.d/01-papertrail.conf" do
+  #   source "01-papertrail.conf.erb"
+  #   mode "0644"
+  #   owner "root"
+  #   group "root"
+  #   variables({
+  #     :port => port
+  #   })
+  # end
 
 
   Chef::Log.info("Restarting rsyslog ...")
@@ -43,6 +44,7 @@ node[:deploy].each do |application, deploy|
     owner "root"
     group "root"
     variables({
+      :host => host,
       :port => port,
       :deploy => deploy,
       :log_files => node[:papertrail][:log_files]
