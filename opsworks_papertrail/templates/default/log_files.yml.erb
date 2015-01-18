@@ -1,7 +1,10 @@
 files:
-  - <%= @deploy[:deploy_to] %>/shared/log/production.log
-  - <%= @deploy[:deploy_to] %>/shared/log/unicorn.stderr.log
-  - <%= @deploy[:deploy_to] %>/shared/log/unicorn.stdout.log
+  <% @log_files['rails'].each do |path| %>
+  - <%= "#{@deploy[:deplot_to]}/#{path}" %>
+  <% end %>
+  <% @log_files['common'].each do |path| %>
+  - <%= path %>
+  <% end %>
 
 destination:
   host: logs.papertrailapp.com

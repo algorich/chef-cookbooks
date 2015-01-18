@@ -43,9 +43,9 @@ node[:deploy].each do |application, deploy|
     owner "root"
     group "root"
     variables({
-      :app_src => node[:app_src],
       :port => port,
-      :deploy => deploy
+      :deploy => deploy,
+      :log_files => node[:papertrail][:log_files]
     })
   end
 
