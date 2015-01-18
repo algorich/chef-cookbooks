@@ -15,7 +15,7 @@ end
 
 
 Chef::Log.info("Restarting rsyslog ...")
-execute "/etc/init.d/rsyslog restart" do
+execute "service rsyslog restart" do
   user "root"
   action :run
 end
