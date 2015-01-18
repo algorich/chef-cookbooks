@@ -51,7 +51,7 @@ node[:deploy].each do |application, deploy|
 
 
   Chef::Log.info("Starting remote_syslog ...")
-  execute "/etc/init.d/remote_syslog start" do
+  execute "service remote_syslog restart" do
     user "root"
     action :run
   end
