@@ -1,7 +1,7 @@
 files:
-  - <%= @app_src %>/log/production.log
-  - <%= @app_src %>/log/unicorn.stderr.log
-  - <%= @app_src %>/log/unicorn.stdout.log
+  - <%= @deploy[:deploy_to] %>/log/production.log
+  - <%= @deploy[:deploy_to] %>/log/unicorn.stderr.log
+  - <%= @deploy[:deploy_to] %>/log/unicorn.stdout.log
 
 destination:
   host: logs.papertrailapp.com
