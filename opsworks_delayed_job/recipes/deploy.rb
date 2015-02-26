@@ -33,6 +33,8 @@ node[:deploy].each do |application, deploy|
     app application
   end
 
+  # fix by @robamaton to restart workers in chef 11.10, as seen in:
+  # https://github.com/joeyAghion/opsworks_delayed_job/pull/10
   execute "restart delayed_job" do
     command node[:delayed_job][application][:restart_command]
   end
